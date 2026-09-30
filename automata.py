@@ -29,6 +29,18 @@ class Automato:
                     pilha.append(destino)
         return fecho
 
-    
+    def mover(self, estados, simbolo):
+        destinos = set()
+
+        for estado in estados:
+            # Busca os estados alcançáveis pelo símbolo atual a partir de cada estado ativo
+            transicoes_simbolo = self.transicoes.get(estado, {}).get(simbolo, [])
+
+            for destino in transicoes_simbolo:
+                destinos.add(destino)
+
+        return destinos
+
+        
 
     

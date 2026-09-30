@@ -41,6 +41,30 @@ class Automato:
 
         return destinos
 
+    def reconhecer(self, palavra):
+        estados_ativos = self.fecho_epsilon({self.estado_inicial})
+
+        print(f"\nPalavra: {palavra}")
+        print(f"Estados ativos iniciais (fecho-ε): {estados_ativos}")
+
+        for simbolo in palavra:
+            estados_ativos = self.mover(estados_ativos, simbolo)
+            estados_ativos = self.fecho_epsilon(estados_ativos)
+
+            print(f"Símbolo lido: {simbolo}")
+            print(f"Estados ativos: {estados_ativos}")
+
+        intersecao = estados_ativos & self.estados_finais
+
+        if intersecao:
+            print(f"Interseção com estados finais: {intersecao}")
+            print("Resultado: ACEITA")
+            return True
+
+        print("Interseção com estados finais: ∅")
+        print("Resultado: REJEITADA")
+        return False
+
         
 
     

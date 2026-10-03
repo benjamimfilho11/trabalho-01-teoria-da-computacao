@@ -13,7 +13,13 @@ def main():
         dados["transicoes"]
     )
 
-    automato.reconhecer("aab")
+    for palavra in dados["palavras"]:
+        print(f"\nPalavra: {palavra}")
+
+        if automato.reconhecer(palavra):
+            print("Resultado: ACEITA")
+        else:
+            print("Resultado: REJEITADA")
 
 
 if __name__ == "__main__":
